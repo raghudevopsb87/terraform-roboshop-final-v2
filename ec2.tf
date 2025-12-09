@@ -2,7 +2,7 @@ resource "aws_instance" "instances" {
   for_each = var.components
 
   ami                    = var.ami
-  instance_type          = var.instance_type
+  instance_type          = each.value["instance_type"]
   vpc_security_group_ids = [aws_security_group.ec2[each.key].id]
 
   tags = {
